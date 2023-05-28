@@ -68,6 +68,64 @@ namespace negocio
             }
         }
 
+        public List<Articulo> listarConSP()
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearSP("storedListar");
+
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+
+                    aux.IdArticulo = (int)datos.Lector["Id"];
+
+                    if (!(datos.Lector.IsDBNull(datos.Lector.GetOrdinal("Codigo"))))
+                        aux.Codigo = (string)datos.Lector["Codigo"];
+
+                    if (!(datos.Lector["Nombre"] is DBNull))
+                        aux.Nombre = (string)datos.Lector["Nombre"];
+
+                    if (!(datos.Lector["Descripcion"] is DBNull))
+                        aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    aux.IdMarca = new Marca();
+                    if (!(datos.Lector["marca"] is DBNull))
+                    {
+                        aux.IdMarca.IdMarca = (int)datos.Lector["IdMarca"];
+                        aux.IdMarca.Descripcion = (string)datos.Lector["marca"];
+                    }
+
+                    aux.IdCategoria = new Categoria();
+                    if (!(datos.Lector["Categoria"] is DBNull))
+                    {
+                        aux.IdCategoria.IdCategoria = (int)datos.Lector["IdCategoria"];
+                        aux.IdCategoria.Descripcion = (string)datos.Lector["Categoria"];
+                    }
+
+                    if (!(datos.Lector["Precio"] is DBNull))
+                        aux.Precio = (decimal)datos.Lector["Precio"];
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public int agregar(Articulo nuevo)
         {
             AccesoDatos datos = new AccesoDatos();      

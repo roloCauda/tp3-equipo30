@@ -64,8 +64,13 @@
             </div>
 
             <!--Contenedor de pagina-->
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+            <div class="container">
+                <hr />
+                <div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
 
             <!--Footer-->
             <footer class="text-center text-white fixed-bottom" style="background-color: #f1f1f1;">
