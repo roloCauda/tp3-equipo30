@@ -22,8 +22,8 @@ namespace negocio
         
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true;");
-            //conexion = new SqlConnection("server=.\\UTNSQLSERVER; database=CATALOGO_P3_DB; integrated security=true;");
+            //conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_P3_DB; integrated security=true;");
+            conexion = new SqlConnection("server=.\\UTNSQLSERVER; database=CATALOGO_P3_DB; integrated security=true;");
 
             comando = new SqlCommand();
         }
@@ -34,16 +34,12 @@ namespace negocio
         }
 
         public void setearSPconParametro(string sp, int id)
-        {
-            
-            
-            
-            
-            /*comando.CommandType = System.Data.CommandType.StoredProcedure;
+        {            
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
             comando.CommandText = sp;
             limpiarParametros(this);
 
-            comando.Parameters.AddWithValue("@IdArticulo", id);*/
+            comando.Parameters.AddWithValue("@IdArticulo", id);
         }
 
         public void setearConsulta(string consulta)

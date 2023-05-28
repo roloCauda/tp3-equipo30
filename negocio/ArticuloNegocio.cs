@@ -118,8 +118,10 @@ namespace negocio
 
                     try
                     {
-                        datos2.setearConsulta("SELECT I.Id, I.ImagenUrl FROM IMAGENES I WHERE I.IdArticulo = @IdArticulo");
-                        datos2.setearParametro("@IdArticulo", aux.IdArticulo);
+                        //datos2.setearConsulta("SELECT I.Id, I.ImagenUrl, I.IdArticulo FROM IMAGENES I WHERE I.IdArticulo = @IdArticulo");
+                        //datos2.setearParametro("@IdArticulo", aux.IdArticulo);
+
+                        datos2.setearSPconParametro("storedImg", aux.IdArticulo);
                         datos2.ejecutarLectura();
 
                         List<Imagen> LImagenes = new List<Imagen>();
