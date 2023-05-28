@@ -1,0 +1,19 @@
+﻿body {
+    .navbar-custom, .footer-custom
+
+{
+    background-color: #1B9D85;
+}
+
+.search-button {
+    background-color: #E9F6EF;
+}
+
+    .search-button:hover {
+        background-color: #4C4D6C;
+    }
+
+.seccion-custom {
+    background-color: #E9F6EF;
+}
+}
