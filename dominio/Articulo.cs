@@ -28,6 +28,6 @@ namespace dominio
             return Nombre;
         }
 
-       
+        public List<Imagen> ListaImagenes { get; set;}
     }
 }

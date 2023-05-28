@@ -18,7 +18,6 @@ namespace carrito_web
             ListaArticulo = negocio.listarConSP();
             repRepetidor.DataSource = ListaArticulo;
             repRepetidor.DataBind();
-
         }
     }
 }

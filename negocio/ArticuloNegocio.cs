@@ -70,8 +70,9 @@ namespace negocio
 
         public List<Articulo> listarConSP()
         {
-            List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
+
+            List<Articulo> lista = new List<Articulo>();
 
             try
             {
@@ -111,6 +112,74 @@ namespace negocio
                     if (!(datos.Lector["Precio"] is DBNull))
                         aux.Precio = (decimal)datos.Lector["Precio"];
 
+
+                    //cargar imagenes en la lista de Articulo
+                    AccesoDatos datos2 = new AccesoDatos();
+
+                    try
+                    {
+                        datos2.setearConsulta("SELECT I.Id, I.ImagenUrl FROM IMAGENES I WHERE I.IdArticulo = @IdArticulo");
+                        datos2.setearParametro("@IdArticulo", aux.IdArticulo);
+                        datos2.ejecutarLectura();
+
+                        List<Imagen> LImagenes = new List<Imagen>();
+                        bool imagenEncontrada = false;
+
+                        Imagen auxI = new Imagen();
+
+                        while (datos2.Lector.Read())
+                        {
+
+                            if (!(datos2.Lector["ImagenUrl"] is DBNull))
+                            {
+                                auxI.ImagenURL = (string)datos2.Lector["ImagenUrl"];
+                                imagenEncontrada = true;
+                            }
+
+                            LImagenes.Add(auxI);
+                        }
+
+                        if (!imagenEncontrada)
+                        {
+                            auxI.ImagenURL = "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg";
+                            LImagenes.Add(auxI);
+                        }
+
+                        aux.ListaImagenes = LImagenes;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    datos2.cerrarConexion();
+
+                    /*
+                    try
+                    {
+                        datos2.setearSPconParametro("obtenerImagenes", aux.IdArticulo);
+                        datos2.ejecutarLectura();
+
+                        List<Imagen> LImagenes = new List<Imagen>();
+
+                        while (datos2.Lector.Read())
+                        {
+                            Imagen auxI = new Imagen();
+
+                            if (!(datos2.Lector["ImagenUrl"] is DBNull))
+                                auxI.ImagenURL = (string)datos2.Lector["ImagenUrl"];
+
+                            LImagenes.Add(auxI);
+                        }
+
+                        aux.ListaImagenes = LImagenes;
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw ex;
+                    }
+                    datos2.cerrarConexion();
+                    */
                     lista.Add(aux);
                 }
 
@@ -124,11 +193,12 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
+
         }
 
         public int agregar(Articulo nuevo)
         {
-            AccesoDatos datos = new AccesoDatos();      
+            AccesoDatos datos = new AccesoDatos();
             int nuevoId = 0;
 
             try
@@ -178,8 +248,8 @@ namespace negocio
 
                 throw;
             }
-            finally 
-            { 
+            finally
+            {
                 datos.cerrarConexion();
             }
         }
@@ -226,7 +296,7 @@ namespace negocio
 
                 datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
-                
+
                 while (datos.Lector.Read())
                 {
                     Articulo aux = new Articulo();
@@ -260,7 +330,6 @@ namespace negocio
                 throw ex;
             }
         }
-
 
         public void eliminar(int id)
         {
