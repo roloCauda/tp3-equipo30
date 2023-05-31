@@ -118,9 +118,6 @@ namespace negocio
 
                     try
                     {
-                        //datos2.setearConsulta("SELECT I.Id, I.ImagenUrl, I.IdArticulo FROM IMAGENES I WHERE I.IdArticulo = @IdArticulo");
-                        //datos2.setearParametro("@IdArticulo", aux.IdArticulo);
-
                         datos2.setearSPconParametro("storedImg", aux.IdArticulo);
                         datos2.ejecutarLectura();
 
@@ -155,33 +152,6 @@ namespace negocio
                     }
                     datos2.cerrarConexion();
 
-                    /*
-                    try
-                    {
-                        datos2.setearSPconParametro("obtenerImagenes", aux.IdArticulo);
-                        datos2.ejecutarLectura();
-
-                        List<Imagen> LImagenes = new List<Imagen>();
-
-                        while (datos2.Lector.Read())
-                        {
-                            Imagen auxI = new Imagen();
-
-                            if (!(datos2.Lector["ImagenUrl"] is DBNull))
-                                auxI.ImagenURL = (string)datos2.Lector["ImagenUrl"];
-
-                            LImagenes.Add(auxI);
-                        }
-
-                        aux.ListaImagenes = LImagenes;
-                    }
-                    catch (Exception ex)
-                    {
-
-                        throw ex;
-                    }
-                    datos2.cerrarConexion();
-                    */
                     lista.Add(aux);
                 }
 

@@ -11,7 +11,14 @@ namespace carrito_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                Label lblSeccion = Master.FindControl("lblSeccion") as Label;
+                if (lblSeccion != null)
+                {
+                    lblSeccion.Text = "FINALIZAR COMPRA";
+                }
+            }
         }
     }
 }

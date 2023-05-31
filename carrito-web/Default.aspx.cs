@@ -18,6 +18,15 @@ namespace carrito_web
             ListaArticulo = negocio.listarConSP();
             repRepetidor.DataSource = ListaArticulo;
             repRepetidor.DataBind();
+
+            if (!IsPostBack)
+            {
+                Label lblSeccion = Master.FindControl("lblSeccion") as Label;
+                if (lblSeccion != null)
+                {
+                    lblSeccion.Text = "NUESTROS PRODUCTOS";
+                }
+            }
         }
     }
 }

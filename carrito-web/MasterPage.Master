@@ -60,7 +60,7 @@
 
             <!--Titulo de seccion-->
             <div class="d-flex justify-content-center p-3 seccion-custom">
-                <asp:Label ID="lblSeccion" runat="server" Text="Label" CssClass="seccion-custom">NUESTROS PRODUCTOS</asp:Label>
+                <asp:Label ID="lblSeccion" runat="server" Text="Label" CssClass="seccion-custom"></asp:Label>
             </div>
 
             <!--Contenedor de pagina-->
