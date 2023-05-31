@@ -4,12 +4,11 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <asp:Repeater runat="server" ID="repRepetidor">
             <ItemTemplate>
                 <div class="col">
-                    <div class="card">
+                    <div class="card custom-card">
                         <img src="<%#Eval("ListaImagenes[0]") %>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><%#Eval("Nombre") %></h5>
@@ -20,6 +19,5 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
-     </div>
-
+    </div>
 </asp:Content>
