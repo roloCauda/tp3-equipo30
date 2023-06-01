@@ -318,5 +318,101 @@ namespace negocio
                 throw;
             }
         }
+
+        public Articulo cargarArticulo(int id)
+        {
+            Articulo aux = new Articulo();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearSPconParametro("storedArticulo", id);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    aux.IdArticulo = (int)datos.Lector["Id"];
+
+                    if (!(datos.Lector.IsDBNull(datos.Lector.GetOrdinal("Codigo"))))
+                        aux.Codigo = (string)datos.Lector["Codigo"];
+
+                    if (!(datos.Lector["Nombre"] is DBNull))
+                        aux.Nombre = (string)datos.Lector["Nombre"];
+
+                    if (!(datos.Lector["Descripcion"] is DBNull))
+                        aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    aux.IdMarca = new Marca();
+                    if (!(datos.Lector["marca"] is DBNull))
+                    {
+                        aux.IdMarca.IdMarca = (int)datos.Lector["IdMarca"];
+                        aux.IdMarca.Descripcion = (string)datos.Lector["marca"];
+                    }
+
+                    aux.IdCategoria = new Categoria();
+                    if (!(datos.Lector["Categoria"] is DBNull))
+                    {
+                        aux.IdCategoria.IdCategoria = (int)datos.Lector["IdCategoria"];
+                        aux.IdCategoria.Descripcion = (string)datos.Lector["Categoria"];    
+                    }
+
+                    if (!(datos.Lector["Precio"] is DBNull))
+                        aux.Precio = (decimal)datos.Lector["Precio"];
+
+                    //cargar imagenes en la lista de Articulo
+                    AccesoDatos datos2 = new AccesoDatos();
+
+                    try
+                    {
+                        datos2.setearSPconParametro("storedImg", aux.IdArticulo);
+                        datos2.ejecutarLectura();
+
+                        List<Imagen> LImagenes = new List<Imagen>();
+                        bool imagenEncontrada = false;
+
+                        Imagen auxI = new Imagen();
+
+                        while (datos2.Lector.Read())
+                        {
+
+                            if (!(datos2.Lector["ImagenUrl"] is DBNull))
+                            {
+                                auxI.ImagenURL = (string)datos2.Lector["ImagenUrl"];
+                                imagenEncontrada = true;
+                            }
+
+                            LImagenes.Add(auxI);
+                        }
+
+                        if (!imagenEncontrada)
+                        {
+                            auxI.ImagenURL = "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg";
+                            LImagenes.Add(auxI);
+                        }
+
+                        aux.ListaImagenes = LImagenes;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                    finally
+                    {
+                        datos2.cerrarConexion();
+                    }
+                    
+                }
+                    return aux;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
     }
 }

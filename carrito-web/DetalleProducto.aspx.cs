@@ -13,6 +13,9 @@ namespace carrito_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Articulo art = new Articulo();
+            ArticuloNegocio negocio = new ArticuloNegocio();
+
             if (!IsPostBack)
             {
                 Label lblSeccion = Master.FindControl("lblSeccion") as Label;
@@ -22,6 +25,28 @@ namespace carrito_web
                 }
             }
 
+            try
+            {
+                string idArticulo = Request.QueryString["id"].ToString();
+
+                if (!string.IsNullOrEmpty(idArticulo))
+                {
+                    int id = int.Parse(idArticulo);
+                    art = negocio.cargarArticulo(id);
+                    lblNombre.Text = art.Nombre;
+                    lblDescripcion.Text = art.Descripcion;
+                    lblMarca.Text = art.IdMarca.Descripcion;
+                    lblCategoria.Text = art.IdCategoria.Descripcion;
+                    lblPrecio.Text = art.Precio.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            rptItems.DataSource = art.ListaImagenes;
+            rptItems.DataBind();
         }
     }
 }
