@@ -29,5 +29,11 @@ namespace dominio
         }
 
         public List<Imagen> ListaImagenes { get; set;}
+
+        public Articulo() //ver
+        {
+            ListaImagenes = new List<Imagen>();
+        }
     }
+
 }

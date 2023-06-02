@@ -16,14 +16,17 @@ namespace carrito_web
             Articulo art = new Articulo();
             ArticuloNegocio negocio = new ArticuloNegocio();
 
+            Carrito carrito = (Carrito)Session["ListaItems"];
+
+            /*Primera vez que carga la pagina*/
             if (!IsPostBack)
             {
                 Label lblSeccion = Master.FindControl("lblSeccion") as Label;
-                if (lblSeccion != null)
-                {
-                    lblSeccion.Text = "DETALLE PRODUCTO";
-                }
+                lblSeccion.Text = "DETALLE PRODUCTO";
             }
+
+            Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
+            lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
 
             try
             {
@@ -38,7 +41,9 @@ namespace carrito_web
                     lblMarca.Text = art.IdMarca.Descripcion;
                     lblCategoria.Text = art.IdCategoria.Descripcion;
                     lblPrecio.Text = art.Precio.ToString();
+                    Session["ArticuloSeleccionado"] = art;
                 }
+
             }
             catch (Exception ex)
             {
@@ -47,6 +52,74 @@ namespace carrito_web
 
             rptItems.DataSource = art.ListaImagenes;
             rptItems.DataBind();
+        }
+
+        protected void btnAgregar_click(object sender, EventArgs e)
+        {
+            Carrito carrito = (Carrito)Session["ListaItems"];
+            Articulo artSeleccionado = (Articulo)Session["ArticuloSeleccionado"];
+
+            bool articuloYaExiste = false;
+
+            foreach (ItemCarrito item in carrito.ListaItems)
+            {
+                if (item.Articulo.IdArticulo == artSeleccionado.IdArticulo)
+                {
+                    item.Cantidad += 1;
+                    articuloYaExiste = true;
+                    break;
+                }
+            }
+
+            if (!articuloYaExiste)
+            {
+                ItemCarrito nuevoItem = new ItemCarrito
+                {
+                    Articulo = artSeleccionado,
+                    Cantidad = 1
+                };
+
+                carrito.ListaItems.Add(nuevoItem);
+            }
+
+            carrito.total += artSeleccionado.Precio;
+
+            Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
+            lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+        }
+
+        protected void btnQuitar_click(object sender, EventArgs e)
+        {
+            Carrito carrito = (Carrito)Session["ListaItems"];
+            Articulo artSeleccionado = (Articulo)Session["ArticuloSeleccionado"];
+
+            ItemCarrito itemExistente = null;
+
+            foreach (ItemCarrito item in carrito.ListaItems)
+            {
+                if (item.Articulo.IdArticulo == artSeleccionado.IdArticulo)
+                {
+                    itemExistente = item;
+                    break;
+                }
+            }
+
+            if (itemExistente != null)
+            {
+                if (itemExistente.Cantidad > 1)
+                {
+                    itemExistente.Cantidad -= 1;
+                }
+                else
+                {
+                    carrito.ListaItems.Remove(itemExistente);
+                }
+
+                carrito.total -= artSeleccionado.Precio;
+
+                Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
+                lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+            }
         }
     }
 }

@@ -11,14 +11,19 @@ namespace carrito_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            int cantArticulos;
+
+            /*Primera vez que carga la pagina*/
             if (!IsPostBack)
             {
                 Label lblSeccion = Master.FindControl("lblSeccion") as Label;
-                if (lblSeccion != null)
-                {
-                    lblSeccion.Text = "FINALIZAR COMPRA";
-                }
+                lblSeccion.Text = "FINALIZAR COMPRA";
             }
+
+            cantArticulos = (int)Session["CantCarrito"];
+
+            Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
+            lblCantCarrito.Text = cantArticulos.ToString();
         }
     }
 }

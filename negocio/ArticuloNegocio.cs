@@ -386,7 +386,7 @@ namespace negocio
                                 imagenEncontrada = true;
 
                                 LImagenes.Add(auxI);
-                            }
+                            }   
                         }
 
                         if (!imagenEncontrada)

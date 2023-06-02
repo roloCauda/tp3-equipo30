@@ -5,6 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <div class="row ">
+            <!--Columna 1-->
             <div class="col-md-6">
 
                 <!--Inicio Carousel-->
@@ -30,31 +31,44 @@
                 </div>
                 <!--Fin Carousel-->
 
-            
-        </div>
-        <div class="col-md-6">
-            <div>
-                <h2>Articulo</h2>
-                <ul>
-                    <li>
-                        <asp:Label ID="lblNombre" runat="server" Text="Label"></asp:Label>
-                    </li>
-                    <li>
-                        <asp:Label ID="lblDescripcion" runat="server" Text=""></asp:Label>
-                    </li>
-                    <li>
-                        <asp:Label ID="lblMarca" runat="server" Text=""></asp:Label>
-                    </li>
-                    <li>
-                        <asp:Label ID="lblCategoria" runat="server" Text=""></asp:Label>
-                    </li>
-                    <li>
-                        <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label>
-                    </li>
-                </ul>
+
+            </div>
+            <!--Columna 2-->
+            <div class="col-md-6">
+                <div>
+                    <h2>Articulo</h2>
+                    <ul>
+                        <li>
+                            <asp:Label ID="lblNombre" runat="server" Text="Label"></asp:Label>
+                        </li>
+                        <li>
+                            <asp:Label ID="lblDescripcion" runat="server" Text=""></asp:Label>
+                        </li>
+                        <li>
+                            <asp:Label ID="lblMarca" runat="server" Text=""></asp:Label>
+                        </li>
+                        <li>
+                            <asp:Label ID="lblCategoria" runat="server" Text=""></asp:Label>
+                        </li>
+                        <li>
+                            <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="btn-group" role="group" aria-label="Basic example">
+
+
+                    <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" class="btn btn-primary" OnClick="btnQuitar_click" />
+                    <button type="button" class="btn btn-primary custom-button">
+                        <asp:Label ID="lblCantCarrito" runat="server" Text="Label"></asp:Label>
+                    </button>
+                    <asp:Button ID="btnAgregarAlCarrito" runat="server" Text="+" type="button" class="btn btn-primary" OnClick="btnAgregar_click" />
+                </div>
+
+
             </div>
         </div>
-    </div>
     </div>
 
 </asp:Content>
