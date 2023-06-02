@@ -27,6 +27,8 @@ namespace carrito_web
 
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
             lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+            Label lblCantCarritoBoton = Master.FindControl("lblCantCarritoBoton") as Label;
+            lblCantCarritoBoton.Text = lblCantCarrito.Text;
 
             try
             {
@@ -86,6 +88,8 @@ namespace carrito_web
 
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
             lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+            Label lblCantCarritoBoton = Master.FindControl("lblCantCarritoBoton") as Label;
+            lblCantCarritoBoton.Text = lblCantCarrito.Text;
         }
 
         protected void btnQuitar_click(object sender, EventArgs e)
@@ -119,6 +123,8 @@ namespace carrito_web
 
                 Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
                 lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+                Label lblCantCarritoBoton = Master.FindControl("lblCantCarritoBoton") as Label;
+                lblCantCarritoBoton.Text = lblCantCarrito.Text;
             }
         }
     }

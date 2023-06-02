@@ -47,7 +47,19 @@
                     <!--Contenido del boton carrito-->
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Carrito</h5>
+
+                            <div class="position-relative">
+                                <a href="#" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png" alt="Inbox" height="20" />
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        <asp:Label ID="lblCantCarritoBoton" runat="server" Text=""></asp:Label>
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </a>
+                            </div>
+
+
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">LUCIAAAAAAA</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
