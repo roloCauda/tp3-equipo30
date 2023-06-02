@@ -123,23 +123,25 @@ namespace negocio
 
                         List<Imagen> LImagenes = new List<Imagen>();
                         bool imagenEncontrada = false;
-
-                        Imagen auxI = new Imagen();
-
+                        
                         while (datos2.Lector.Read())
                         {
+                            Imagen auxI;
 
                             if (!(datos2.Lector["ImagenUrl"] is DBNull))
                             {
+                                auxI = new Imagen();
                                 auxI.ImagenURL = (string)datos2.Lector["ImagenUrl"];
                                 imagenEncontrada = true;
+
+                                LImagenes.Add(auxI);
                             }
 
-                            LImagenes.Add(auxI);
                         }
 
                         if (!imagenEncontrada)
                         {
+                            Imagen auxI = new Imagen();
                             auxI.ImagenURL = "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg";
                             LImagenes.Add(auxI);
                         }
@@ -150,7 +152,10 @@ namespace negocio
                     {
                         throw ex;
                     }
-                    datos2.cerrarConexion();
+                    finally
+                    {
+                        datos2.cerrarConexion();
+                    }
 
                     lista.Add(aux);
                 }
@@ -370,22 +375,23 @@ namespace negocio
                         List<Imagen> LImagenes = new List<Imagen>();
                         bool imagenEncontrada = false;
 
-                        Imagen auxI = new Imagen();
-
                         while (datos2.Lector.Read())
                         {
+                            Imagen auxI;
 
                             if (!(datos2.Lector["ImagenUrl"] is DBNull))
                             {
+                                auxI = new Imagen();
                                 auxI.ImagenURL = (string)datos2.Lector["ImagenUrl"];
                                 imagenEncontrada = true;
-                            }
 
-                            LImagenes.Add(auxI);
+                                LImagenes.Add(auxI);
+                            }
                         }
 
                         if (!imagenEncontrada)
                         {
+                            Imagen auxI = new Imagen();
                             auxI.ImagenURL = "https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg";
                             LImagenes.Add(auxI);
                         }
