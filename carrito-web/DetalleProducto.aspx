@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-detalle">
-        <div class="row ">
+        <div class="row">
             <!--Columna 1-->
             <div class="col-md-6 carousel-estilo">
 

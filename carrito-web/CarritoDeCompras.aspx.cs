@@ -22,7 +22,8 @@ namespace carrito_web
                 lblSeccion.Text = "CARRITO DE COMPRAS";
             }
 
-            cantArticulos = (int)Session["CantCarrito"];
+            //cantArticulos = (int)Session["CantCarrito"];
+            cantArticulos = 1;
 
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
             lblCantCarrito.Text = cantArticulos.ToString();

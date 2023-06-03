@@ -1,5 +1,5 @@
 ﻿.container-detalle {
-    height: 80vh;
+    height: 100vh;
     margin-top: 70px;
     margin-bottom: 25px;
 }
@@ -7,7 +7,7 @@
 .carousel-estilo {
     padding: 25px;
     background-color: #3b71ca;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .carousel-inner .carousel-item img {
