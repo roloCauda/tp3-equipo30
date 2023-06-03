@@ -1,16 +1,16 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetalleProducto.aspx.cs" Inherits="carrito_web.DetalleProducto" MasterPageFile="~/MasterPage.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-            <link rel="stylesheet" href="../Estilos/EstilosDetalleProducto.css">
+<link rel="stylesheet" href="../Estilos/EstilosDetalleProducto.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container-detalle">
         <div class="row">
             <!--Columna 1-->
-            <div class="col-md-6 carousel-estilo">
+            <div class="col-md-6 carousel-estilo" style="background-color:white;">
 
                 <!--Inicio Carousel-->
-                <div id="carouselExample" class="carousel slide">
+                <div id="carouselExample" class="carousel slide carousel-dark">
                     <div class="carousel-inner">
                         <asp:Repeater ID="rptItems" runat="server">
                             <ItemTemplate>
