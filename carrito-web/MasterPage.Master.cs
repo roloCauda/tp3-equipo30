@@ -15,13 +15,10 @@ namespace carrito_web
         public List<ItemCarrito> ListaItems { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArticuloNegocio negocio = new ArticuloNegocio();
             carrito = (Carrito)Session["ListaItems"];
 
-            // ListaItems = carrito.listar(); //deberia ser carrito.ListaArticulos ahora???
-            repInfoCarrito.DataSource = carrito.ListaItems;//deberia ser carrito.ListaArticulos ahora???
+            repInfoCarrito.DataSource = carrito.ListaItems;
             repInfoCarrito.DataBind();
-
 
         }
     }

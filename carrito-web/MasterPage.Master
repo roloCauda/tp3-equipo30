@@ -61,11 +61,11 @@
                             <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="font-size: 24px;">Carrito de Compras</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
-                        <div class="offcanvas-body">
+                        <div class="offcanvas-body" style="display: flex; flex-direction: column;">
                             <div class="container">
                                 <asp:Repeater ID="repInfoCarrito" runat="server">
                                     <ItemTemplate>
-                                        <div class="row" style="justify-content: space-around; align-items:center; text-align:center;">
+                                        <div class="row" style="justify-content: space-around; align-items: center; text-align: center;">
                                             <div class="col-lg-2 col-md-2 custom-img">
                                                 <img src="<%#Eval("Articulo.ListaImagenes[0].ImagenURL") %>" class="card-img-top" alt="...">
                                             </div>
@@ -75,7 +75,7 @@
                                             <div class="col-lg-2 col-md-2">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-3">
-                                                        <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button"  Style="font-size: 14px;" />
+                                                        <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" Style="font-size: 14px;" />
                                                     </div>
                                                     <div class="col-lg-3 col-md-3">
                                                         <button type="button" style="font-size: 14px;">
@@ -91,13 +91,26 @@
                                                 <asp:Label ID="Label3" runat="server" Text=""><%#Eval("Articulo.Precio") %></asp:Label>
                                             </div>
                                             <div class="col-lg-2 col-md-2">
-                                                <asp:Button ID="Button1" runat="server" Text="Borrar" type="button" class="btn btn-primary"/>
+                                                <asp:Button ID="Button1" runat="server" Text="Borrar" type="button" class="btn btn-primary" />
 
                                             </div>
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
+                            </div>
+                            <div style="margin-top: auto; display: flex; flex-direction: column;">
+                                <div style="display: flex; justify-content: right;">
+                                    <asp:Label ID="Label6" runat="server" Text="Vaciar Carrito"></asp:Label>
+                                    <asp:Button ID="Button3" runat="server" Text=")==" />
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <asp:Label ID="Label7" runat="server" Text="Precio TOTAL"></asp:Label>
+                                    <asp:Label ID="Label4" runat="server" Text="$1500"></asp:Label>
+                                </div>
+                                <div style="display: flex; justify-content: center">
+                                    <a href="CarritoDeCompras.aspx">Continuar al Carrito</a>
 
+                                </div>
                             </div>
                         </div>
                     </div>

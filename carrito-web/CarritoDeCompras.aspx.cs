@@ -13,7 +13,7 @@ namespace carrito_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            int cantArticulos;
+            Carrito carrito = (Carrito)Session["ListaItems"];
 
             /*Primera vez que carga la pagina*/
             if (!IsPostBack)
@@ -22,11 +22,13 @@ namespace carrito_web
                 lblSeccion.Text = "CARRITO DE COMPRAS";
             }
 
-            //cantArticulos = (int)Session["CantCarrito"];
-            cantArticulos = 1;
+            repCarrito.DataSource = carrito.ListaItems;
+            repCarrito.DataBind();
 
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
-            lblCantCarrito.Text = cantArticulos.ToString();
+            lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+            Label lblCantCarritoBoton = Master.FindControl("lblCantCarritoBoton") as Label;
+            lblCantCarritoBoton.Text = lblCantCarrito.Text;
         }
     }
 }
