@@ -6,11 +6,11 @@
 }
 
 .search-button {
-    background-color: #ffffff;
-    color: #000000;
-    border-color: black;
-    margin-left:10px;
-    margin-right:10px;
+    background-color: #000000;
+    color: #3b71ca;
+    border-color: #3b71ca;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
     .search-button:hover {

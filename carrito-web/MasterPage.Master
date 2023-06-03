@@ -31,8 +31,8 @@
 
                     <!--Search-->
                     <div class="d-flex align-items-center  col-md-4" role="search">
-                        <input class="form-control" type="search" placeholder="Buscar por nombre o descripción" aria-label="Search">
-                        <button class="btn btn-outline-success search-button" type="submit"><span class="material-symbols-outlined">search</span></button>
+                        <asp:TextBox ID="txtFiltro" AutoPostBack="true" runat="server" placeholder="Buscar por nombre o descripción" Width="350" Height="45"></asp:TextBox>
+                        <button class="btn btn-outline-primary search-button" type="submit"><span class="material-symbols-outlined">search</span></button>
                     </div>
 
                     <!--Boton carrito-->
