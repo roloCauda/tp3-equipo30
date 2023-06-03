@@ -1,12 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetalleProducto.aspx.cs" Inherits="carrito_web.DetalleProducto" MasterPageFile="~/MasterPage.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+            <link rel="stylesheet" href="../Estilos/EstilosDetalleProducto.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
+    <div class="container-detalle">
         <div class="row ">
             <!--Columna 1-->
-            <div class="col-md-6">
+            <div class="col-md-6 carousel-estilo">
 
                 <!--Inicio Carousel-->
                 <div id="carouselExample" class="carousel slide">
@@ -14,7 +15,9 @@
                         <asp:Repeater ID="rptItems" runat="server">
                             <ItemTemplate>
                                 <div class="carousel-item<%# Container.ItemIndex == 0 ? " active" : "" %>">
-                                    <img src='<%# Eval("ImagenURL") %>' class="d-block w-100" alt="...">
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <img src='<%# Eval("ImagenURL") %>' class="img-fluid" alt="...">
+                                    </div>
                                 </div>
                             </ItemTemplate>
                         </asp:Repeater>
@@ -34,7 +37,7 @@
 
             </div>
             <!--Columna 2-->
-            <div class="col-md-6">
+            <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
                 <div>
                     <h2>Articulo</h2>
                     <ul>
@@ -61,7 +64,7 @@
 
                     <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" class="btn btn-primary" OnClick="btnQuitar_click" />
                     <button type="button" class="btn btn-primary custom-button">
-                        <asp:Label ID="lblCantCarrito" runat="server" Text="Label"></asp:Label>
+                        <asp:Label ID="lblCantCarrito" runat="server" Text="Agregar Al Carrito"></asp:Label>
                     </button>
                     <asp:Button ID="btnAgregarAlCarrito" runat="server" Text="+" type="button" class="btn btn-primary" OnClick="btnAgregar_click" />
                 </div>

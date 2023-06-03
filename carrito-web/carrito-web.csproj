@@ -70,6 +70,8 @@
     <Content Include="CarritoDeCompras.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DetalleProducto.aspx" />
+    <Content Include="Estilos\EstilosDefault.css" />
+    <Content Include="Estilos\EstilosDetalleProducto.css" />
     <Content Include="Estilos\EstilosMasterPage.css" />
     <Content Include="FinalizarCompra.aspx" />
     <Content Include="Global.asax" />

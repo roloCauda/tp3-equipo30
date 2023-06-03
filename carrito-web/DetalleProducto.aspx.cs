@@ -22,7 +22,7 @@ namespace carrito_web
             if (!IsPostBack)
             {
                 Label lblSeccion = Master.FindControl("lblSeccion") as Label;
-                lblSeccion.Text = "DETALLE PRODUCTO";
+                lblSeccion.Text = "DETALLE DEL PRODUCTO";
             }
 
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
