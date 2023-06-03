@@ -62,7 +62,7 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
 
 
-                    <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" class="btn btn-primary" OnClick="btnQuitar_click" />
+                    <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" class="btn btn-primary" OnClick="btnQuitar_click"/>
                     <button type="button" class="btn btn-primary custom-button">
                         <asp:Label ID="lblCantCarrito" runat="server" Text="Agregar Al Carrito"></asp:Label>
                     </button>

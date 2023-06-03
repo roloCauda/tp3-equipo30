@@ -31,7 +31,7 @@
 
                     <!--Search-->
                     <div class="d-flex align-items-center  col-md-4" role="search">
-                        <asp:TextBox ID="txtFiltro" AutoPostBack="true" runat="server" placeholder="Buscar por nombre o descripción" Width="350" Height="45"></asp:TextBox>
+                        <asp:TextBox class="tbBuscar" ID="txtFiltro" AutoPostBack="true" runat="server" placeholder="Buscar por nombre o descripción" Width="350" Height="45"></asp:TextBox>
                         <button class="btn btn-outline-primary search-button" type="submit"><span class="material-symbols-outlined">search</span></button>
                     </div>
 
@@ -47,9 +47,8 @@
                     </div>
 
                     <!--Contenido del boton carrito-->
-                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="width: 750px;">
                         <div class="offcanvas-header">
-
                             <div class="position-relative">
                                 <a href="#" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                                     <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png" alt="Inbox" height="20" />
@@ -59,20 +58,47 @@
                                     </span>
                                 </a>
                             </div>
-
-
-                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Carrito de Compras</h5>
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="font-size: 24px;">Carrito de Compras</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
-                            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Link</a>
-                                </li>
-                            </ul>
+                            <div class="container">
+                                <asp:Repeater ID="repInfoCarrito" runat="server">
+                                    <ItemTemplate>
+                                        <div class="row" style="justify-content: center; align-items:center;">
+                                            <div class="col-lg-2 col-md-2 custom-img">
+                                                <img src="<%#Eval("Articulo.ListaImagenes[0].ImagenURL") %>" class="card-img-top" alt="...">
+                                            </div>
+                                            <div class="col-lg-2 col-md-2">
+                                                <asp:Label ID="Label2" runat="server" Text=""><%#Eval("Articulo.Nombre") %></asp:Label>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-3">
+                                                        <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" class="btn btn-primary" Style="font-size: 14px;" />
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3">
+                                                        <button type="button" class="btn btn-primary custom-button" style="font-size: 14px;">
+                                                            <asp:Label ID="Label1" runat="server" Text="1"></asp:Label>
+                                                        </button>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3">
+                                                        <asp:Button ID="btnAgregarAlCarrito" runat="server" Text="+" type="button" class="btn btn-primary" Style="font-size: 14px;" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2">
+                                                <asp:Label ID="Label3" runat="server" Text=""><%#Eval("Articulo.Precio") %></asp:Label>
+                                            </div>
+                                            <div class="col-lg-2 col-md-2">
+                                                <asp:Button ID="Button1" runat="server" Text="Borrar" type="button" class="btn btn-primary"/>
+
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+
+                            </div>
                         </div>
                     </div>
                 </div>
