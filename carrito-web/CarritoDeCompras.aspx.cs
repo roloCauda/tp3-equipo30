@@ -25,13 +25,9 @@ namespace carrito_web
             /* Le pasa la lista de items del carrito al DataSource, para que el front pueda acceder a la informacion */
             repCarrito.DataSource = carrito.ListaItems;
             repCarrito.DataBind();
+            repResumen.DataSource = carrito.ListaItems;
+            repResumen.DataBind();
 
-
-            /*  Actualiza las Label de la Master */
-            Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
-            lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
-
-            Label lblPrecio = Master.FindControl("lblPrecio") as Label;
             lblPrecio.Text = "$" + carrito.total.ToString();
         }
 
@@ -64,6 +60,8 @@ namespace carrito_web
 
             repCarrito.DataSource = carrito.ListaItems;
             repCarrito.DataBind();
+            repResumen.DataSource = carrito.ListaItems;
+            repResumen.DataBind();
 
             Session["ListaItems"] = carrito;
             Response.Redirect("CarritoDeCompras.aspx");
@@ -106,6 +104,8 @@ namespace carrito_web
 
             repCarrito.DataSource = carrito.ListaItems;
             repCarrito.DataBind();
+            repResumen.DataSource = carrito.ListaItems;
+            repResumen.DataBind();
 
             Session["ListaItems"] = carrito;
             Response.Redirect("CarritoDeCompras.aspx");
@@ -132,6 +132,22 @@ namespace carrito_web
 
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
             lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+
+            repCarrito.DataSource = carrito.ListaItems;
+            repCarrito.DataBind();
+            repResumen.DataSource = carrito.ListaItems;
+            repResumen.DataBind();
+
+            Response.Redirect("CarritoDeCompras.aspx");
+        }
+        protected void btnVaciarCarrito_click(object sender, EventArgs e)
+        {
+            Carrito carrito = (Carrito)Session["ListaItems"];
+
+            carrito.ListaItems.Clear();
+
+            carrito.total = 0;
+            Session["ListaItems"] = carrito;
 
             repCarrito.DataSource = carrito.ListaItems;
             repCarrito.DataBind();
