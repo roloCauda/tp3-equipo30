@@ -22,97 +22,95 @@ namespace carrito_web
                 lblSeccion.Text = "CARRITO DE COMPRAS";
             }
 
+            /* Le pasa la lista de items del carrito al DataSource, para que el front pueda acceder a la informacion */
             repCarrito.DataSource = carrito.ListaItems;
             repCarrito.DataBind();
 
+
+            /*  Actualiza las Label de la Master */
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
             lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+
             Label lblPrecio = Master.FindControl("lblPrecio") as Label;
             lblPrecio.Text = "$" + carrito.total.ToString();
         }
 
         protected void btnAgregar_click(object sender, EventArgs e)
         {
+            /* Le asigno al botonbtnAgregar lo que me trae el boton agregar del front(id), lo casteo y lo guardo en un int */
             Button btnAgregar = (Button)sender;
             int idArticulo = Convert.ToInt32(btnAgregar.CommandArgument);
+
+            /* Le asigna a carrito lo que esta guardado en Session*/
             Carrito carrito = (Carrito)Session["ListaItems"];
-            Articulo artSeleccionado = (Articulo)Session["ArticuloSeleccionado"];
 
-            bool articuloYaExiste = false;
-
+            /*  Busca el art en la lista y le suma una unidad */
             foreach (ItemCarrito item in carrito.ListaItems)
             {
                 if (item.Articulo.IdArticulo == idArticulo)
                 {
                     item.Cantidad += 1;
-                    articuloYaExiste = true;
+                    carrito.total += item.Articulo.Precio;
                     break;
                 }
             }
 
-            if (!articuloYaExiste)
-            {
-                ItemCarrito nuevoItem = new ItemCarrito
-                {
-                    Articulo = artSeleccionado,
-                    Cantidad = 1
-                };
 
-                carrito.ListaItems.Add(nuevoItem);
-            }
-
-            carrito.total += artSeleccionado.Precio;
-
+            /*  Actualiza las Label de la Master */
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
             lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+
             Label lblPrecio = Master.FindControl("lblPrecio") as Label;
             lblPrecio.Text = "$" + carrito.total.ToString();
 
             repCarrito.DataSource = carrito.ListaItems;
             repCarrito.DataBind();
+
+            Session["ListaItems"] = carrito;
+            Response.Redirect("CarritoDeCompras.aspx");
         }
 
         protected void btnQuitar_click(object sender, EventArgs e)
         {
+            /* Le asigno al botonbtnAgregar lo que me trae el boton agregar del front(id), lo casteo y lo guardo en un int */
             Button btnQuitar = (Button)sender;
             int idArticulo = Convert.ToInt32(btnQuitar.CommandArgument);
+
+            /* Le asigna a carrito lo que esta guardado en Session["ListaItems"] */
             Carrito carrito = (Carrito)Session["ListaItems"];
-            Articulo artSeleccionado = (Articulo)Session["ArticuloSeleccionado"];
-
-            ItemCarrito itemExistente = null;
-
+            
             foreach (ItemCarrito item in carrito.ListaItems)
             {
                 if (item.Articulo.IdArticulo == idArticulo)
                 {
-                    itemExistente = item;
+                    if (item.Cantidad > 1)
+                    {
+                        item.Cantidad -= 1;
+                        carrito.total -= item.Articulo.Precio;
+                    }
+                    else
+                    {
+                        carrito.total -= item.Articulo.Precio;
+                        carrito.ListaItems.Remove(item);
+                    }
+
+                    /*  Actualiza las Label de la Master */
+                    Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
+                    lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+
+                    Label lblPrecio = Master.FindControl("lblPrecio") as Label;
+                    lblPrecio.Text = "$" + carrito.total.ToString();
+
                     break;
                 }
             }
 
-            if (itemExistente != null)
-            {
-                if (itemExistente.Cantidad > 1)
-                {
-                    itemExistente.Cantidad -= 1;
-                }
-                else
-                {
-                    carrito.ListaItems.Remove(itemExistente);
-                }
+            repCarrito.DataSource = carrito.ListaItems;
+            repCarrito.DataBind();
 
-                carrito.total -= artSeleccionado.Precio;
-
-                Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
-                lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
-                Label lblPrecio = Master.FindControl("lblPrecio") as Label;
-                lblPrecio.Text = "$" + carrito.total.ToString();
-
-                repCarrito.DataSource = carrito.ListaItems;
-                repCarrito.DataBind();
-            }
+            Session["ListaItems"] = carrito;
+            Response.Redirect("CarritoDeCompras.aspx");
         }
-
 
         protected void btnBorrar_click(object sender, EventArgs e)
         {
@@ -138,6 +136,7 @@ namespace carrito_web
 
             repCarrito.DataSource = carrito.ListaItems;
             repCarrito.DataBind();
+
             Response.Redirect("CarritoDeCompras.aspx");
         }
     }

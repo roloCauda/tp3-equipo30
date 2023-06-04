@@ -37,35 +37,23 @@ namespace carrito_web
 
         protected void btnAgregar_click(object sender, EventArgs e)
         {
+            /* Le asigno al botonbtnAgregar lo que me trae el boton agregar del front(id), lo casteo y lo guardo en un int */
             Button btnAgregar = (Button)sender;
             int idArticulo = Convert.ToInt32(btnAgregar.CommandArgument);
+
+            /* Le asigna a carrito lo que esta guardado en Session*/
             Carrito carrito = (Carrito)Session["ListaItems"];
-            Articulo artSeleccionado = (Articulo)Session["ArticuloSeleccionado"];
 
-            bool articuloYaExiste = false;
-
+            /*  Busca el art en la lista y le suma una unidad */
             foreach (ItemCarrito item in carrito.ListaItems)
             {
                 if (item.Articulo.IdArticulo == idArticulo)
                 {
                     item.Cantidad += 1;
-                    articuloYaExiste = true;
+                    carrito.total += item.Articulo.Precio;
                     break;
                 }
             }
-
-            if (!articuloYaExiste)
-            {
-                ItemCarrito nuevoItem = new ItemCarrito
-                {
-                    Articulo = artSeleccionado,
-                    Cantidad = 1
-                };
-
-                carrito.ListaItems.Add(nuevoItem);
-            }
-
-            carrito.total += artSeleccionado.Precio;
 
             lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
 
@@ -73,46 +61,49 @@ namespace carrito_web
 
             repInfoCarrito.DataSource = carrito.ListaItems;
             repInfoCarrito.DataBind();
+
+            Session["ListaItems"] = carrito;
         }
 
         protected void btnQuitar_click(object sender, EventArgs e)
         {
+            /* Le asigno al botonbtnAgregar lo que me trae el boton agregar del front(id), lo casteo y lo guardo en un int */
             Button btnQuitar = (Button)sender;
             int idArticulo = Convert.ToInt32(btnQuitar.CommandArgument);
-            Carrito carrito = (Carrito)Session["ListaItems"];
-            Articulo artSeleccionado = (Articulo)Session["ArticuloSeleccionado"];
 
-            ItemCarrito itemExistente = null;
+            /* Le asigna a carrito lo que esta guardado en Session["ListaItems"] */
+            Carrito carrito = (Carrito)Session["ListaItems"];
+
 
             foreach (ItemCarrito item in carrito.ListaItems)
             {
                 if (item.Articulo.IdArticulo == idArticulo)
                 {
-                    itemExistente = item;
+                    if (item.Cantidad > 1)
+                    {
+                        item.Cantidad -= 1;
+                        carrito.total -= item.Articulo.Precio;
+                    }
+                    else
+                    {
+                        carrito.total -= item.Articulo.Precio;
+                        carrito.ListaItems.Remove(item);
+                    }
+
+                    /*  Actualiza las Label de la Master */
+
+                    lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+
+                    lblPrecio.Text = "$" + carrito.total.ToString();
+
                     break;
                 }
             }
 
-            if (itemExistente != null)
-            {
-                if (itemExistente.Cantidad > 1)
-                {
-                    itemExistente.Cantidad -= 1;
-                }
-                else
-                {
-                    carrito.ListaItems.Remove(itemExistente);
-                }
+            repInfoCarrito.DataSource = carrito.ListaItems;
+            repInfoCarrito.DataBind();
 
-                carrito.total -= artSeleccionado.Precio;
-
-                lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
-                lblPrecio.Text = "$" + carrito.total.ToString();
-
-                repInfoCarrito.DataSource = carrito.ListaItems;
-                repInfoCarrito.DataBind();
-                //updatePanelCarrito.Update();
-            }
+            Session["ListaItems"] = carrito;
         }
 
         protected void btnBorrar_click(object sender, EventArgs e)

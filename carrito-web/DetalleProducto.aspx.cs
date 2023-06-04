@@ -26,17 +26,21 @@ namespace carrito_web
                 lblSeccion.Text = "DETALLE DEL PRODUCTO";
             }
 
+            /*  Actualiza las Label de la Master */
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
             lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+
             Label lblPrecio = Master.FindControl("lblPrecio") as Label;
             lblPrecio.Text = "$" + carrito.total.ToString();
 
             try
             {
+                /*  Trae el ID de Default */
                 string idArticulo = Request.QueryString["id"].ToString();
 
                 if (!string.IsNullOrEmpty(idArticulo))
                 {
+                    /*  Carga el articulo */
                     int id = int.Parse(idArticulo);
                     art = negocio.cargarArticulo(id);
                     lblNombre.Text = art.Nombre;
@@ -53,6 +57,7 @@ namespace carrito_web
                 throw ex;
             }
 
+            /*  Carga las imagenes del articulo seleccionado */
             rptItems.DataSource = art.ListaImagenes;
             rptItems.DataBind();
         }
@@ -64,6 +69,7 @@ namespace carrito_web
 
             bool articuloYaExiste = false;
 
+            /*  Busca el art en la lista y le suma una unidad */
             foreach (ItemCarrito item in carrito.ListaItems)
             {
                 if (item.Articulo.IdArticulo == artSeleccionado.IdArticulo)
@@ -74,6 +80,7 @@ namespace carrito_web
                 }
             }
 
+            /*  Busca el art en la lista, si no lo encuentra, lo crea y le suma una unidad */
             if (!articuloYaExiste)
             {
                 ItemCarrito nuevoItem = new ItemCarrito
@@ -85,12 +92,17 @@ namespace carrito_web
                 carrito.ListaItems.Add(nuevoItem);
             }
 
+            /*  Suma al total del carrio el monto del articulo */
             carrito.total += artSeleccionado.Precio;
 
+            /*  Actualiza las Label de la Master */
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
             lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+
             Label lblPrecio = Master.FindControl("lblPrecio") as Label;
             lblPrecio.Text = "$" + carrito.total.ToString();
+
+            /*  Hace que se actualice la pagina default y actualice el carrito de la master */
             Response.Redirect("DetalleProducto.aspx?id=" + artSeleccionado.IdArticulo);
         }
 
@@ -123,8 +135,11 @@ namespace carrito_web
 
                 carrito.total -= artSeleccionado.Precio;
 
+                /*  Actualiza las Label de la Master */
                 Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
                 lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+
+                /*  Hace que se actualice la pagina default y actualice el carrito de la master */
                 Response.Redirect("DetalleProducto.aspx?id=" + artSeleccionado.IdArticulo);
             }
         }
