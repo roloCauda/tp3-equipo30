@@ -1,4 +1,5 @@
-﻿using System;
+﻿using dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,7 @@ namespace carrito_web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            int cantArticulos;
+            Carrito carrito = (Carrito)Session["ListaItems"];
 
             /*Primera vez que carga la pagina*/
             if (!IsPostBack)
@@ -20,10 +21,12 @@ namespace carrito_web
                 lblSeccion.Text = "FINALIZAR COMPRA";
             }
 
-            cantArticulos = (int)Session["CantCarrito"];
-
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
-            lblCantCarrito.Text = cantArticulos.ToString();
+            lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+            Label lblCantCarritoBoton = Master.FindControl("lblCantCarritoBoton") as Label;
+            lblCantCarritoBoton.Text = lblCantCarrito.Text;
+            Label lblPrecio = Master.FindControl("lblPrecio") as Label;
+            lblPrecio.Text = "$" + carrito.total.ToString();
         }
     }
 }

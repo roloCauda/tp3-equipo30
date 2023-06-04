@@ -27,8 +27,8 @@ namespace carrito_web
 
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
             lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
-            Label lblCantCarritoBoton = Master.FindControl("lblCantCarritoBoton") as Label;
-            lblCantCarritoBoton.Text = lblCantCarrito.Text;
+            Label lblPrecio = Master.FindControl("lblPrecio") as Label;
+            lblPrecio.Text = "$" + carrito.total.ToString();
         }
     }
 }

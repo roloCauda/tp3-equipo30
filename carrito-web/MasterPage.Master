@@ -5,10 +5,17 @@
 <html lang="en">
 <head runat="server">
     <title>TP3_Web</title>
+
+
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- HOJA DE CSS -->
     <link rel="stylesheet" href="../Estilos/EstilosMasterPage.css">
+
+    <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <!-- MDB -->
@@ -17,9 +24,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Material UI -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
 </head>
 <body class="p-0 m-0 border-0">
     <form id="form1" runat="server">
+
         <div>
             <nav class="navbar navbar-custom sticky-top">
                 <div class="container-fluid d-flex justify-content-between align-items-center flex-nowrap">
@@ -49,15 +58,6 @@
                     <!--Contenido del boton carrito-->
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="width: 750px;">
                         <div class="offcanvas-header">
-                            <div class="position-relative">
-                                <a href="#" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png" alt="Inbox" height="20" />
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        <asp:Label ID="lblCantCarritoBoton" runat="server" Text=""></asp:Label>
-                                        <span class="visually-hidden">unread messages</span>
-                                    </span>
-                                </a>
-                            </div>
                             <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="font-size: 24px;">Carrito de Compras</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
@@ -70,29 +70,28 @@
                                                 <img src="<%#Eval("Articulo.ListaImagenes[0].ImagenURL") %>" class="card-img-top" alt="...">
                                             </div>
                                             <div class="col-lg-2 col-md-2">
-                                                <asp:Label ID="Label2" runat="server" Text=""><%#Eval("Articulo.Nombre") %></asp:Label>
+                                                <asp:Label ID="lblNombreArticulo" runat="server" Text=""><%#Eval("Articulo.Nombre") %></asp:Label>
                                             </div>
                                             <div class="col-lg-2 col-md-2">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-3">
-                                                        <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" Style="font-size: 14px;" />
+                                                        <asp:Button ID="btnQuitar_click" runat="server" Text="-" type="button" Style="font-size: 14px;" OnClick="btnQuitar_click" />
                                                     </div>
                                                     <div class="col-lg-3 col-md-3">
                                                         <button type="button" style="font-size: 14px;">
-                                                            <asp:Label ID="Label1" runat="server" Text="1"></asp:Label>
+                                                            <asp:Label ID="lblCantArtEnCarrito" runat="server" Text=""><%#Eval("Cantidad") %></asp:Label>
                                                         </button>
                                                     </div>
                                                     <div class="col-lg-3 col-md-3">
-                                                        <asp:Button ID="btnAgregarAlCarrito" runat="server" Text="+" type="button" Style="font-size: 14px;" />
+                                                        <asp:Button ID="btnAgregar_click" runat="server" Text="+" type="button" Style="font-size: 14px;" OnClick="btnAgregar_click" />
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-2 col-md-2">
-                                                <asp:Label ID="Label3" runat="server" Text=""><%#Eval("Articulo.Precio") %></asp:Label>
+                                                <asp:Label ID="lblPrcioArticulo" runat="server" Text=""><%#Eval("Articulo.Precio") %></asp:Label>
                                             </div>
                                             <div class="col-lg-2 col-md-2">
-                                                <asp:Button ID="Button1" runat="server" Text="Borrar" type="button" class="btn btn-primary" />
-
+                                                <asp:Button ID="btnBorrar" runat="server" Text="Borrar" type="button" class="btn btn-primary" OnClick="btnBorrar_click" CommandName="Borrar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>'/>
                                             </div>
                                         </div>
                                     </ItemTemplate>
@@ -100,12 +99,12 @@
                             </div>
                             <div style="margin-top: auto; display: flex; flex-direction: column;">
                                 <div style="display: flex; justify-content: right;">
-                                    <asp:Label ID="Label6" runat="server" Text="Vaciar Carrito"></asp:Label>
-                                    <asp:Button ID="Button3" runat="server" Text=")==" />
+                                    <asp:Label ID="lblVaciarCarrito" runat="server" Text="Vaciar Carrito"></asp:Label>
+                                    <asp:Button ID="btnVaciarCarrito" runat="server" Text=")==" OnClick="btnVaciarCarrito_click"/>
                                 </div>
                                 <div style="display: flex; justify-content: space-between;">
-                                    <asp:Label ID="Label7" runat="server" Text="Precio TOTAL"></asp:Label>
-                                    <asp:Label ID="Label4" runat="server" Text="$1500"></asp:Label>
+                                    <asp:Label ID="lblTextoPrecioTotal" runat="server" Text="Precio TOTAL"></asp:Label>
+                                    <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label>
                                 </div>
                                 <div style="display: flex; justify-content: center">
                                     <a href="CarritoDeCompras.aspx">Continuar al Carrito</a>
@@ -114,6 +113,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </nav>
 

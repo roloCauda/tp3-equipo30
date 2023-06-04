@@ -14,7 +14,7 @@
                                                 <img src="<%#Eval("Articulo.ListaImagenes[0].ImagenURL") %>" class="card-img-top" alt="...">
                                             </div>
                                             <div class="col-lg-2 col-md-2">
-                                                <asp:Label ID="Label2" runat="server" Text=""><%#Eval("Articulo.Nombre") %></asp:Label>
+                                                <asp:Label ID="lblNombreArticulo" runat="server" Text=""><%#Eval("Articulo.Nombre") %></asp:Label>
                                             </div>
                                             <div class="col-lg-2 col-md-2">
                                                 <div class="row">
@@ -23,7 +23,7 @@
                                                     </div>
                                                     <div class="col-lg-3 col-md-3">
                                                         <button type="button" style="font-size: 14px;">
-                                                            <asp:Label ID="Label1" runat="server" Text="1"></asp:Label>
+                                                            <asp:Label ID="lblCantArtEnCarrito" runat="server" Text=""><%#Eval("Cantidad") %></asp:Label>
                                                         </button>
                                                     </div>
                                                     <div class="col-lg-3 col-md-3">
@@ -32,10 +32,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-2 col-md-2">
-                                                <asp:Label ID="Label3" runat="server" Text=""><%#Eval("Articulo.Precio") %></asp:Label>
+                                                <asp:Label ID="lblPrcioArticulo" runat="server" Text=""><%#Eval("Articulo.Precio") %></asp:Label>
                                             </div>
                                             <div class="col-lg-2 col-md-2">
-                                                <asp:Button ID="Button1" runat="server" Text="Borrar" type="button" class="btn btn-primary" />
+                                                <asp:Button ID="btnEliminarDelCarrito" runat="server" Text="Borrar" type="button" class="btn btn-primary" />
 
                                             </div>
                                         </div>
