@@ -20,6 +20,7 @@ namespace carrito_web
         {
             ArticuloNegocio negocio = new ArticuloNegocio();
             carrito = (Carrito)Session["ListaItems"];
+            TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
 
             if (carrito == null)
             {
@@ -27,8 +28,8 @@ namespace carrito_web
                 Session["ListaItems"] = carrito;
             }
 
-            ListaArticulo = negocio.listarConSP(); //deberia ser carrito.ListaArticulos ahora???
-            repRepetidor.DataSource = ListaArticulo;//deberia ser carrito.ListaArticulos ahora???
+            ListaArticulo = negocio.listarConSP(txtFiltro.Text);
+            repRepetidor.DataSource = ListaArticulo;
             repRepetidor.DataBind();
 
             /*Primera vez que carga la pagina*/

@@ -19,6 +19,7 @@ namespace carrito_web
 
             Carrito carrito = (Carrito)Session["ListaItems"];
 
+
             /*Primera vez que carga la pagina*/
             if (!IsPostBack)
             {
