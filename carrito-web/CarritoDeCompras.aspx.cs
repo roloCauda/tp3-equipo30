@@ -33,6 +33,8 @@ namespace carrito_web
 
         protected void btnAgregar_click(object sender, EventArgs e)
         {
+            Button btnAgregar = (Button)sender;
+            int idArticulo = Convert.ToInt32(btnAgregar.CommandArgument);
             Carrito carrito = (Carrito)Session["ListaItems"];
             Articulo artSeleccionado = (Articulo)Session["ArticuloSeleccionado"];
 
@@ -40,7 +42,7 @@ namespace carrito_web
 
             foreach (ItemCarrito item in carrito.ListaItems)
             {
-                if (item.Articulo.IdArticulo == artSeleccionado.IdArticulo)
+                if (item.Articulo.IdArticulo == idArticulo)
                 {
                     item.Cantidad += 1;
                     articuloYaExiste = true;
@@ -72,6 +74,8 @@ namespace carrito_web
 
         protected void btnQuitar_click(object sender, EventArgs e)
         {
+            Button btnQuitar = (Button)sender;
+            int idArticulo = Convert.ToInt32(btnQuitar.CommandArgument);
             Carrito carrito = (Carrito)Session["ListaItems"];
             Articulo artSeleccionado = (Articulo)Session["ArticuloSeleccionado"];
 
@@ -79,7 +83,7 @@ namespace carrito_web
 
             foreach (ItemCarrito item in carrito.ListaItems)
             {
-                if (item.Articulo.IdArticulo == artSeleccionado.IdArticulo)
+                if (item.Articulo.IdArticulo == idArticulo)
                 {
                     itemExistente = item;
                     break;

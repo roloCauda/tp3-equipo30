@@ -19,7 +19,7 @@
                                             <div class="col-lg-2 col-md-2">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-3">
-                                                        <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" Style="font-size: 14px;" OnClick="btnQuitar_click"/>
+                                                        <asp:Button ID="btnQuitar" runat="server" Text="-" type="button" Style="font-size: 14px;" OnClick="btnQuitar_click" CommandName="Quitar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>'/>
                                                     </div>
                                                     <div class="col-lg-3 col-md-3">
                                                         <button type="button" style="font-size: 14px;">
@@ -27,7 +27,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="col-lg-3 col-md-3">
-                                                        <asp:Button ID="btnAgregarAlCarrito" runat="server" Text="+" type="button" Style="font-size: 14px;" OnClick="btnAgregar_click"/>
+                                                        <asp:Button ID="btnAgregar" runat="server" Text="+" type="button" Style="font-size: 14px;" OnClick="btnAgregar_click" CommandName="Agregar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>' />
                                                     </div>
                                                 </div>
                                             </div>

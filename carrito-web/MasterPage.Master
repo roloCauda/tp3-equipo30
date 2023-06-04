@@ -24,7 +24,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
     <!-- Material UI -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body class="p-0 m-0 border-0">
     <form id="form1" runat="server">
@@ -67,7 +68,7 @@
                                     <ItemTemplate>
                                         <div class="row" style="justify-content: space-around; align-items: center; text-align: center;">
                                             <div class="col-lg-2 col-md-2 custom-img">
-                                                <img src="<%#Eval("Articulo.ListaImagenes[0].ImagenURL") %>" class="card-img-top" alt="...">
+                                                <img src="<%#Eval("Articulo.ListaImagenes[0].ImagenURL") %>" class="card-img-top" alt="..." style="width:100%; max-height:100px;">
                                             </div>
                                             <div class="col-lg-2 col-md-2">
                                                 <asp:Label ID="lblNombreArticulo" runat="server" Text=""><%#Eval("Articulo.Nombre") %></asp:Label>
@@ -75,7 +76,7 @@
                                             <div class="col-lg-2 col-md-2">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-3">
-                                                        <asp:Button ID="btnQuitar_click" runat="server" Text="-" type="button" Style="font-size: 14px;" OnClick="btnQuitar_click" />
+                                                        <asp:Button ID="btnQuitar" runat="server" Text="-" type="button" Style="font-size: 14px;" OnClick="btnQuitar_click" CommandName="Quitar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>'/>
                                                     </div>
                                                     <div class="col-lg-3 col-md-3">
                                                         <button type="button" style="font-size: 14px;">
@@ -83,7 +84,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="col-lg-3 col-md-3">
-                                                        <asp:Button ID="btnAgregar_click" runat="server" Text="+" type="button" Style="font-size: 14px;" OnClick="btnAgregar_click" />
+                                                        <asp:Button ID="btnAgregar" runat="server" Text="+" type="button" Style="font-size: 14px;" OnClick="btnAgregar_click" CommandName="Agregar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>' />
                                                     </div>
                                                 </div>
                                             </div>
@@ -98,12 +99,14 @@
                                 </asp:Repeater>
                             </div>
                             <div style="margin-top: auto; display: flex; flex-direction: column;">
-                                <div style="display: flex; justify-content: right; padding-bottom: 25px;">
-                                    <asp:Label ID="lblVaciarCarrito" runat="server" Text="Vaciar Carrito"></asp:Label>
-                                    <asp:Button ID="btnVaciarCarrito" runat="server" Text="X" OnClick="btnVaciarCarrito_click" />
+                                <div style="display: flex; justify-content: right; text-align: center; align-items: center; padding-bottom: 25px;">
+                                    <asp:Label ID="lblVaciarCarrito" runat="server" Text="VACIAR CARRITO" Style="margin-right: 10px;"></asp:Label>
+                                    <asp:LinkButton ID="btnVaciarCarrito" runat="server" OnClick="btnVaciarCarrito_click" CssClass="btn btn-primary btn-sm">
+                                        <span class="material-icons">delete</span>
+                                    </asp:LinkButton>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; padding-bottom: 25px;">
-                                    <asp:Label ID="lblTextoPrecioTotal" runat="server" Text="Precio TOTAL"></asp:Label>
+                                    <asp:Label ID="lblTextoPrecioTotal" runat="server" Text="VALOR TOTAL"></asp:Label>
                                     <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label>
                                 </div>
                                 <div style="display: flex; justify-content: center">
