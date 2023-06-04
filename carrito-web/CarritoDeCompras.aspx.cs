@@ -15,6 +15,13 @@ namespace carrito_web
         {
             Carrito carrito = (Carrito)Session["ListaItems"];
 
+            TextBox txtFiltro = Master.FindControl("txtFiltro") as TextBox;
+
+            if (txtFiltro != null && !string.IsNullOrEmpty(txtFiltro.Text))
+            {
+                Response.Redirect("Default.aspx?txtFiltro=" + Server.UrlEncode(txtFiltro.Text));
+            }
+
             /*Primera vez que carga la pagina*/
             if (!IsPostBack)
             {
