@@ -54,7 +54,7 @@
                             <asp:Label ID="lblCategoria" runat="server" Text=""></asp:Label>
                         </li>
                         <li>
-                            <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lblPrecioArt" runat="server" Text=""></asp:Label>
                         </li>
                     </ul>
                 </div>

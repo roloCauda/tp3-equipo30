@@ -43,7 +43,7 @@ namespace carrito_web
                     lblDescripcion.Text = art.Descripcion;
                     lblMarca.Text = art.IdMarca.Descripcion;
                     lblCategoria.Text = art.IdCategoria.Descripcion;
-                    lblPrecio.Text = art.Precio.ToString();
+                    lblPrecioArt.Text = art.Precio.ToString();
                     Session["ArticuloSeleccionado"] = art;
                 }
 

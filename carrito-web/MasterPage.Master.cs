@@ -143,8 +143,12 @@ namespace carrito_web
 
             carrito.ListaItems.Clear(); 
 
+            carrito.total = 0;
+            Session["ListaItems"] = carrito;
+
             lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
             lblPrecio.Text = "$" + carrito.total.ToString();
+
 
             repInfoCarrito.DataSource = carrito.ListaItems;
             repInfoCarrito.DataBind();

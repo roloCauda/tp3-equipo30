@@ -19,7 +19,7 @@
                                             <div class="col-lg-2 col-md-2">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-3">
-                                                        <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" Style="font-size: 14px;" />
+                                                        <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" Style="font-size: 14px;" OnClick="btnQuitar_click"/>
                                                     </div>
                                                     <div class="col-lg-3 col-md-3">
                                                         <button type="button" style="font-size: 14px;">
@@ -27,15 +27,15 @@
                                                         </button>
                                                     </div>
                                                     <div class="col-lg-3 col-md-3">
-                                                        <asp:Button ID="btnAgregarAlCarrito" runat="server" Text="+" type="button" Style="font-size: 14px;" />
+                                                        <asp:Button ID="btnAgregarAlCarrito" runat="server" Text="+" type="button" Style="font-size: 14px;" OnClick="btnAgregar_click"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-2 col-md-2">
-                                                <asp:Label ID="lblPrcioArticulo" runat="server" Text=""><%#Eval("Articulo.Precio") %></asp:Label>
+                                                <asp:Label ID="lblPrcioArticulo" runat="server" Text=""><%#Convert.ToDecimal(Eval("Articulo.Precio")) * Convert.ToInt32(Eval("Cantidad")) %></asp:Label>
                                             </div>
                                             <div class="col-lg-2 col-md-2">
-                                                <asp:Button ID="btnEliminarDelCarrito" runat="server" Text="Borrar" type="button" class="btn btn-primary" />
+                                                <asp:Button ID="btnBorrar" runat="server" Text="Borrar" type="button" class="btn btn-primary" OnClick="btnBorrar_click" CommandName="Borrar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>'/>
 
                                             </div>
                                         </div>
