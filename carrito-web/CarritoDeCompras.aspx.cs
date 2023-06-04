@@ -66,8 +66,8 @@ namespace carrito_web
             Label lblPrecio = Master.FindControl("lblPrecio") as Label;
             lblPrecio.Text = "$" + carrito.total.ToString();
 
-            /*repInfoCarrito.DataSource = carrito.ListaItems;
-            repInfoCarrito.DataBind();*/
+            repCarrito.DataSource = carrito.ListaItems;
+            repCarrito.DataBind();
         }
 
         protected void btnQuitar_click(object sender, EventArgs e)
@@ -104,9 +104,8 @@ namespace carrito_web
                 Label lblPrecio = Master.FindControl("lblPrecio") as Label;
                 lblPrecio.Text = "$" + carrito.total.ToString();
 
-                /*repInfoCarrito.DataSource = carrito.ListaItems;
-                repInfoCarrito.DataBind();*/
-                //updatePanelCarrito.Update();
+                repCarrito.DataSource = carrito.ListaItems;
+                repCarrito.DataBind();
             }
         }
 
@@ -126,13 +125,16 @@ namespace carrito_web
                 {
                     carrito.total -= (item.Articulo.Precio * item.Cantidad);
                     carrito.ListaItems.RemoveAt(x);
-
                     break;
                 }
             }
 
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
             lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
+
+            repCarrito.DataSource = carrito.ListaItems;
+            repCarrito.DataBind();
+            Response.Redirect("CarritoDeCompras.aspx");
         }
     }
 

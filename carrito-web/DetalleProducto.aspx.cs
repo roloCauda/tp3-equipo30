@@ -91,6 +91,7 @@ namespace carrito_web
             lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
             Label lblPrecio = Master.FindControl("lblPrecio") as Label;
             lblPrecio.Text = "$" + carrito.total.ToString();
+            Response.Redirect("DetalleProducto.aspx?id=" + artSeleccionado.IdArticulo);
         }
 
         protected void btnQuitar_click(object sender, EventArgs e)
@@ -124,8 +125,7 @@ namespace carrito_web
 
                 Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
                 lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
-                Label lblCantCarritoBoton = Master.FindControl("lblCantCarritoBoton") as Label;
-                lblCantCarritoBoton.Text = lblCantCarrito.Text;
+                Response.Redirect("DetalleProducto.aspx?id=" + artSeleccionado.IdArticulo);
             }
         }
     }
