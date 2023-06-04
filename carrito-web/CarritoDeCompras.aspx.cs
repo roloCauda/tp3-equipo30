@@ -55,7 +55,6 @@ namespace carrito_web
                 }
             }
 
-
             /*  Actualiza las Label de la Master */
             Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
             lblCantCarrito.Text = carrito.ListaItems.Count.ToString();

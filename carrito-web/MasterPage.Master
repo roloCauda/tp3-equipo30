@@ -45,6 +45,8 @@
 
                     <!--Boton carrito-->
                     <div class="position-relative">
+                        <% if (!Request.Url.AbsolutePath.Contains("CarritoDeCompras"))
+                            { %>
                         <a href="#" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                             <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png" alt="Inbox" height="20" />
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -52,6 +54,7 @@
                                 <span class="visually-hidden">unread messages</span>
                             </span>
                         </a>
+                        <% } %>
                     </div>
 
                     <!--Contenido del boton carrito-->
@@ -62,16 +65,11 @@
                         </div>
                         <div class="offcanvas-body" style="display: flex; flex-direction: column;">
                             <div class="container">
-
-
-
-
-
                                 <asp:Repeater ID="repInfoCarrito" runat="server">
                                     <ItemTemplate>
                                         <div class="row" style="justify-content: space-around; align-items: center; text-align: center;">
                                             <div class="col-lg-2 col-md-2 custom-img">
-                                                <img src="<%#Eval("Articulo.ListaImagenes[0].ImagenURL") %>" class="card-img-top" alt="..." style="width:100%; max-height:100px;">
+                                                <img src="<%#Eval("Articulo.ListaImagenes[0].ImagenURL") %>" class="card-img-top" alt="..." style="width: 100%; max-height: 100px;">
                                             </div>
                                             <div class="col-lg-2 col-md-2">
                                                 <asp:Label ID="lblNombreArticulo" runat="server" Text=""><%#Eval("Articulo.Nombre") %></asp:Label>
@@ -79,7 +77,7 @@
                                             <div class="col-lg-2 col-md-2">
                                                 <div class="row">
                                                     <div class="col-lg-3 col-md-3">
-                                                        <asp:Button ID="btnQuitar" runat="server" Text="-" type="button" Style="font-size: 14px;" OnClick="btnQuitar_click" CommandName="Quitar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>'/>
+                                                        <asp:Button ID="btnQuitar" runat="server" Text="-" type="button" Style="font-size: 14px;" OnClick="btnQuitar_click" CommandName="Quitar" CommandArgument='<%# Eval("Articulo.IdArticulo") %>' />
                                                     </div>
                                                     <div class="col-lg-3 col-md-3">
                                                         <button type="button" style="font-size: 14px;">
@@ -112,15 +110,12 @@
                                     <asp:Label ID="lblTextoPrecioTotal" runat="server" Text="VALOR TOTAL"></asp:Label>
                                     <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label>
                                 </div>
-
-
                                 <div style="display: flex; justify-content: center">
                                     <a href="CarritoDeCompras.aspx" class="btn btn-primary btn-block">Continuar al Carrito</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </nav>
 
