@@ -98,7 +98,7 @@
                         <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label>
                     </div>
                     <div style="display: flex; justify-content: center; margin-bottom: 10px;">
-                        <a href="CarritoDeCompras.aspx" class="btn btn-primary btn-block">Finalizar Compra</a>
+                        <a href="FinalizarCompra.aspx" class="btn btn-primary btn-block">Finalizar Compra</a>
                     </div>
                     <div style="display: flex; justify-content: center; margin-bottom: 10px;">
                         <a href="Default.aspx" class="btn btn-primary btn-block">Elegir más artículos</a>

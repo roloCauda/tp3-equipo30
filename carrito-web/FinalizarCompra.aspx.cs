@@ -20,13 +20,23 @@ namespace carrito_web
                 Label lblSeccion = Master.FindControl("lblSeccion") as Label;
                 lblSeccion.Text = "FINALIZAR COMPRA";
             }
-
-            Label lblCantCarrito = Master.FindControl("lblCantCarrito") as Label;
-            lblCantCarrito.Text = carrito.ListaItems.Count.ToString();
-            Label lblCantCarritoBoton = Master.FindControl("lblCantCarritoBoton") as Label;
-            lblCantCarritoBoton.Text = lblCantCarrito.Text;
-            Label lblPrecio = Master.FindControl("lblPrecio") as Label;
             lblPrecio.Text = "$" + carrito.total.ToString();
+
+            repFinalizar.DataSource = carrito.ListaItems;
+            repFinalizar.DataBind();
+        }
+
+        protected void Comprar_Click(object sender, EventArgs e)
+        {
+            Carrito carrito = (Carrito)Session["ListaItems"];
+
+            carrito.ListaItems.Clear();
+
+            carrito.total = 0;
+            Session["ListaItems"] = carrito;
+
+            Response.Redirect("Default.aspx");
+
         }
     }
 }
