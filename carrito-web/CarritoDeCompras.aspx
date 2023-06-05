@@ -81,7 +81,7 @@
 
                                 <div class="col-md-6" style="text-align: left; margin-top: 20px;">
                                     <asp:Label ID="lblNombreArticulo" runat="server" Text=""><%#Eval("Articulo.Nombre") %></asp:Label>
-                                    <asp:Label ID="lblCantArtEnCarrito" runat="server" Text="">(<%#Eval("Cantidad") %>)</asp:Label>
+                                    <asp:Label ID="lblCantArtEnCarrito" runat="server" style="color:#3b71ca;" Text="">(<%#Eval("Cantidad") %>)</asp:Label>
                                 </div>
 
                                 <div class="col-md-6" style="text-align: right; margin-top: 20px;">

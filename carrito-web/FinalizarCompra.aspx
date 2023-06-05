@@ -6,31 +6,51 @@
     <div class="container" style="padding: 25px; justify-content: center;">
         <div class="row" style="display: flex; justify-content: center;">
 
-            <div class="col-md-7" style="display: flex; flex-direction: column; border: 3px solid #3b71ca; border-radius: 15px; height: 100vh; text-align: center; margin-right: 15px;">
-                <div>
-            <label for="txtNombre">Nombre:</label>
-            <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
-        </div>
-        <div>
-            <label for="txtApellido">Apellido:</label>
-            <asp:TextBox ID="txtApellido" runat="server"></asp:TextBox>
-        </div>
-        <div>
-            <label for="txtEmail">Email:</label>
-            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
-        </div>
-        <div>
-            <label for="txtDNI">DNI:</label>
-            <asp:TextBox ID="txtDNI" runat="server"></asp:TextBox>
-        </div>
-        <div>
-            <label for="txtCodigoArea">Código de área:</label>
-            <asp:TextBox ID="txtCodigoArea" runat="server"></asp:TextBox>
-        </div>
-        <div>
-            <label for="txtTelefono">Teléfono:</label>
-            <asp:TextBox ID="txtTelefono" runat="server"></asp:TextBox>
-        </div>
+            <div class="col-md-7" style="display: flex; flex-direction: column; border: 3px solid #3b71ca; border-radius: 15px; height: 100vh; text-align: center; margin-right: 15px; padding:15px;">
+                <h2 style="text-align: left;">Datos Personales
+                </h2>
+                <div class="row " style="margin-top:15px;">
+
+                    <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left;">
+                        <label for="txtNombre">Nombre:</label>
+                        <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+
+                    </div>
+
+                    <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left;">
+                        <label for="txtApellido">Apellido:</label>
+                        <asp:TextBox ID="txtApellido" runat="server"></asp:TextBox>
+                    </div>
+
+                </div>
+                <div style="display: flex; flex-direction: column; text-align: left; margin-top:25px;">
+                    <label for="txtEmail">Email:</label>
+                    <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                </div>
+
+                <div class="row " style="margin-top:25px;">
+
+                    <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left;">
+                        <label for="txtDNI">DNI:</label>
+                        <asp:TextBox ID="txtDNI" runat="server"></asp:TextBox>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="row">
+
+                            <div class="col-md-3" style="text-align:left;">
+                                <label for="txtCodigoArea">Área</label>
+                                <asp:TextBox ID="txtCodigoArea" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="col-md-3" style="text-align:left;">
+                                <label for="txtTelefono">Teléfono:</label>
+                                <asp:TextBox ID="txtTelefono" runat="server"></asp:TextBox>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <div class="col-md-4" style="display: flex; flex-direction: column; border: 3px solid #3b71ca; border-radius: 15px; height: 100vh; text-align: center; padding-top: 15px;">
@@ -44,7 +64,7 @@
 
                                 <div class="col-md-6" style="text-align: left; margin-top: 20px;">
                                     <asp:Label ID="lblNombreArticulo" runat="server" Text=""><%#Eval("Articulo.Nombre") %></asp:Label>
-                                    <asp:Label ID="lblCantArtEnCarrito" runat="server" Text="">(<%#Eval("Cantidad") %>)</asp:Label>
+                                    <asp:Label ID="lblCantArtEnCarrito" runat="server" Text="" Style="color: #3b71ca;">(<%#Eval("Cantidad") %>)</asp:Label>
                                 </div>
 
                                 <div class="col-md-6" style="text-align: right; margin-top: 20px;">

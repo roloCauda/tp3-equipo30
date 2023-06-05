@@ -1,13 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DetalleProducto.aspx.cs" Inherits="carrito_web.DetalleProducto" MasterPageFile="~/MasterPage.Master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<link rel="stylesheet" href="../Estilos/EstilosDetalleProducto.css">
+    <link rel="stylesheet" href="../Estilos/EstilosDetalleProducto.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container-detalle">
+    <div class="container-detalle" style="height:70vh;">
         <div class="row">
             <!--Columna 1-->
-            <div class="col-md-6 carousel-estilo" style="background-color:white;">
+            <div class="col-md-6 carousel-estilo" style="background-color: white;">
 
                 <!--Inicio Carousel-->
                 <div id="carouselExample" class="carousel slide carousel-dark">
@@ -37,32 +37,29 @@
 
             </div>
             <!--Columna 2-->
-            <div class="col-md-6 d-flex flex-column align-items-center justify-content-center">
+            <div class="col-md-6 d-flex flex-column align-items-center justify-content-center" style="text-align:center;">
                 <div>
-                    <h2>Articulo</h2>
-                    <ul>
-                        <li>
-                            <asp:Label ID="lblNombre" runat="server" Text="Label"></asp:Label>
-                        </li>
-                        <li>
+                    <h2 style="margin-bottom:20px;">
+                        <asp:Label ID="lblNombre" runat="server" Text="Label"></asp:Label>
+                    </h2>
+                    <h3 style="font-size:20px;">Descripción: 
                             <asp:Label ID="lblDescripcion" runat="server" Text=""></asp:Label>
-                        </li>
-                        <li>
+                    </h3>
+                    <h3 style="font-size:20px;">Marca: 
                             <asp:Label ID="lblMarca" runat="server" Text=""></asp:Label>
-                        </li>
-                        <li>
+                    </h3>
+                    <h3 style="font-size:20px;">Categoría:
                             <asp:Label ID="lblCategoria" runat="server" Text=""></asp:Label>
-                        </li>
-                        <li>
+                    </h3>
+                    <h3 style="font-size:20px;">Precio: $
                             <asp:Label ID="lblPrecioArt" runat="server" Text=""></asp:Label>
-                        </li>
-                    </ul>
+                    </h3>
                 </div>
 
-                <div class="btn-group" role="group" aria-label="Basic example">
+                <div class="btn-group" role="group" aria-label="Basic example" style="margin-top:25px;">
 
 
-                    <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" class="btn btn-primary" OnClick="btnQuitar_click"/>
+                    <asp:Button ID="btnQuitarAlCarrito" runat="server" Text="-" type="button" class="btn btn-primary" OnClick="btnQuitar_click" />
                     <button type="button" class="btn btn-primary custom-button">
                         <asp:Label ID="lblCantCarrito" runat="server" Text="Agregar Al Carrito"></asp:Label>
                     </button>

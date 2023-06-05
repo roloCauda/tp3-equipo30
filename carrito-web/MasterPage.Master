@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <!-- Google Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <%--Google Fonts--%>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body class="p-0 m-0 border-0">
     <form id="form1" runat="server">
@@ -34,7 +37,7 @@
 
                     <!--Logo-->
                     <a class="navbar-brand" href="Default.aspx">
-                        <img src="https://i.imgur.com/LVJcBCD.png" alt="Logo" width="125" height="40">
+                        <img src="https://i.imgur.com/LVJcBCD.png" alt="Logo" width="125" height="45">
                     </a>
 
                     <!--Search-->
@@ -106,7 +109,7 @@
                                     </asp:LinkButton>
                                 </div>
                                 <div style="display: flex; justify-content: space-between; padding-bottom: 25px;">
-                                    <asp:Label ID="lblTextoPrecioTotal" runat="server" Text="VALOR TOTAL"></asp:Label>
+                                    <asp:Label ID="lblTextoPrecioTotal" runat="server" Text="PRECIO TOTAL"></asp:Label>
                                     <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label>
                                 </div>
                                 <div style="display: flex; justify-content: center">
@@ -120,7 +123,7 @@
             </nav>
 
             <!--Titulo de seccion-->
-            <div class="d-flex justify-content-center p-3 seccion-custom">
+            <div class="d-flex justify-content-center p-3 seccion-custom" style="font-size:25px;">
                 <asp:Label ID="lblSeccion" runat="server" Text="Label" CssClass="seccion-custom"></asp:Label>
             </div>
 
