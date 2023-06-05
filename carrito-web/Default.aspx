@@ -10,9 +10,9 @@
             <asp:Repeater runat="server" ID="repRepetidor">
                 <ItemTemplate>
                     <div class="col">
-                        <div class="card custom-card" style="align-items:center;">
-                            <img src="<%#Eval("ListaImagenes[0]") %>" class="card-img-top" alt="..." style="padding-top:15px; height:350px; width:270px;">
-                            <div class="card-body" style="text-align:center;">
+                        <div class="card custom-card" style="align-items:center;">       
+                            <img src="<%#Eval("ListaImagenes[0]") %>" class="card-img-top" alt="..." style="padding-top:15px; height:350px; width:270px;">                            
+                            <div class="card-body text-center">
                                 <h5 class="card-title"><%#Eval("Nombre") %></h5>
                                 <p class="card-text"><%#Eval("Descripcion") %></p>
                                 <a href="DetalleProducto.aspx?id=<%#Eval("IdArticulo") %>" class="btn btn-primary">Ver Detalle</a>
@@ -22,6 +22,5 @@
                 </ItemTemplate>
             </asp:Repeater>
         </div>
-
     </div>
 </asp:Content>

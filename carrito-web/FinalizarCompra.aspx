@@ -12,26 +12,26 @@
                 <div class="row " style="margin-top:15px;">
 
                     <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left;">
-                        <label for="txtNombre">Nombre:</label>
+                        <label for="lblNombre">Nombre:</label>
                         <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
 
                     </div>
 
                     <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left;">
-                        <label for="txtApellido">Apellido:</label>
+                        <label for="lblApellido">Apellido:</label>
                         <asp:TextBox ID="txtApellido" runat="server"></asp:TextBox>
                     </div>
 
                 </div>
                 <div style="display: flex; flex-direction: column; text-align: left; margin-top:25px;">
-                    <label for="txtEmail">Email:</label>
+                    <label for="lblEmail">Email:</label>
                     <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
                 </div>
 
                 <div class="row " style="margin-top:25px;">
 
                     <div class="col-md-6" style="display: flex; flex-direction: column; text-align: left;">
-                        <label for="txtDNI">DNI:</label>
+                        <label for="lblDNI">DNI:</label>
                         <asp:TextBox ID="txtDNI" runat="server"></asp:TextBox>
                     </div>
 
@@ -39,11 +39,11 @@
                         <div class="row">
 
                             <div class="col-md-3" style="text-align:left;">
-                                <label for="txtCodigoArea">Área</label>
+                                <label for="lblCodigoArea">Área</label>
                                 <asp:TextBox ID="txtCodigoArea" runat="server"></asp:TextBox>
                             </div>
                             <div class="col-md-3" style="text-align:left;">
-                                <label for="txtTelefono">Teléfono:</label>
+                                <label for="lblTelefono">Teléfono:</label>
                                 <asp:TextBox ID="txtTelefono" runat="server"></asp:TextBox>
                             </div>
 
@@ -81,7 +81,7 @@
                         <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label>
                     </div>
                     <div style="display: flex; justify-content: center; margin-bottom: 10px;">
-                        <asp:Button ID="Comprar" runat="server" Text="Confirmar" OnClick="Comprar_Click" OnClientClick="return confirmarCompra();" class="btn btn-primary btn-block" />
+                        <asp:Button ID="btnComprar" runat="server" Text="Confirmar" OnClick="Comprar_Click" class="btn btn-primary btn-block" />
                     </div>
                     <div style="display: flex; justify-content: center; margin-bottom: 10px;">
                         <a href="CarritoDeCompras.aspx" class="btn btn-primary btn-block">Modificar Compra</a>
@@ -89,11 +89,8 @@
                 </div>
             </div>
 
+
+
         </div>
     </div>
-    <script>
-        function confirmarCompra() {
-            return confirm("¿Estás seguro de que deseas finalizar la compra y borrar los datos del carrito?");
-        }
-    </script>
 </asp:Content>
